@@ -1,4 +1,4 @@
-const client = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 const assert = require ('assert');
 const { resolve } = require('path');
 //Database object  setup
@@ -6,9 +6,9 @@ const url = process.env.DB_URL;
 const db_name = process.env.DB_NAME; 
 const col_name = process.env.COL_NAME;
 //read all
-const readProducts = () => {
+const readCars = () => {
     const iou = new Promise ((resolve, reject)=>{
-        MongoClient.connection(url, (err, client)=>{
+        MongoClient.connect(url, (err, client)=>{
             assert.equal(err, null);
 
             const db = client.db(db_name);
@@ -22,4 +22,6 @@ const readProducts = () => {
     });
     return iou;
 }
+  module.exports ={
+      readCars,}
 

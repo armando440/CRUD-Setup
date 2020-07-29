@@ -1,8 +1,12 @@
-var express = require ('express');
-var router = express.Router();
+const express = require ('express');
+const router = express.Router();
+const{
+    readCars
+} = require('../../data/cars');
 
-router.get ('/', function (req, res){
-    res.send('Cars home page')
+router.get ('/', async function (req, res){
+     const data = await readCars();
+    res.send(data)
 });
 
 module.exports = router;
